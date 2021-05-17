@@ -1,0 +1,23 @@
+int maxConsecutiveOnes(int N)
+    {
+        int count=0,max=0;
+
+        while(N)
+        {
+            if(N&1)
+            {  
+             count++;
+            }
+            else
+            {
+               if(max<count)
+                  max=count;
+                  count=0;
+            }
+            N>>=1;
+
+        }
+        if(max<count)
+          max=count;
+        return max;
+    }
