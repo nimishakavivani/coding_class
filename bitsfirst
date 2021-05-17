@@ -1,0 +1,7 @@
+public:
+    int setKthBit(int N, int K)
+    {
+
+      int x=1<<K;
+      return x|N;
+    }
