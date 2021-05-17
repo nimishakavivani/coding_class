@@ -1,0 +1,30 @@
+https://www.hackerearth.com/problem/algorithm/modified-power-set/
+
+
+#include<bits/stdc++.h>
+#include<set>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+      string str;
+      cin>>str;
+      //int n=str.length();
+      set<char>s (str.begin(),str.end());
+
+
+
+       long long int len=s.size();
+
+     long long int x=(len*(len+1))/2;
+      cout<<x<<"\n";
+
+    }
+}
+
+@nimishakavivani
+ 
+ 
