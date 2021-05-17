@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long int fact(int N)
+{
+    return (N == 1 or N == 0)?1: N* fact(N - 1) ;
+}
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        long long int n;
+        cin>>n;
+
+        cout<<fact(n)<<"\n";
+    }
+}
