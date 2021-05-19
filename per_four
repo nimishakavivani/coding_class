@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<int>>ans;
+    void vectorpermute(vector<int>nums,int ind)
+    {
+        if(ind==nums.size())
+        {
+            ans.push_back(nums);
+            return;
+        }
+        unordered_set<int>s;
+        for(int i=ind;i<nums.size();i++)
+        {
+            if(s.find(nums.at(i))!=s.end())continue;
+            else
+                s.insert(nums.at(i));
+            swap(nums.at(i),nums.at(ind));
+            vectorpermute(nums,ind+1);
+            swap(nums.at(i),nums.at(ind));
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+      vectorpermute(nums,0);
+        return ans;
+    }
+};
+0 comments on commit 66527bc
