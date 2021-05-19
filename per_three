@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>>ans;
+     void vectorpermutation(vector<int>&nums,int s,int e)
+    {
+        if(s==e)
+        {
+            ans.push_back(nums);
+            return;
+        }
+        for(int i=s;i<=e;i++)
+        {
+            swap(nums[i],nums[s]);
+            vectorpermutation(nums,s+1,e);
+            swap(nums[i],nums[s]);
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>&nums) {
+      int l=nums.size();
+        if(l==1)
+        {
+            ans.push_back(nums);
+            return ans;
+        }
+        vectorpermutation(nums,0,l-1);
+        return ans;
+    }
+};
+0 comments on commit 1fef6ca
+@nimishakavivani
+ 
