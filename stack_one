@@ -1,0 +1,41 @@
+string isBalanced(string s) {
+string str;
+stack<char>st;
+int fl=1;
+for(auto i:s)
+{
+    if(i=='{' || i=='[' || i=='(')
+    {
+        st.push(i);
+    }
+
+   else
+   { 
+    if(i==']' && !st.empty() && st.top()=='[')
+    {
+        st.pop();
+    }
+    else if(i==')' && !st.empty() && st.top()=='(')
+    {
+        st.pop();
+    }
+    else if(i=='}' && !st.empty() && st.top()=='{')
+    {
+        st.pop();
+    }
+    else
+    {
+        fl=0;
+        break;
+    }
+  }
+}
+    if(st.size()!=0 || fl==0)
+    str="NO";
+    else
+     str="YES";
+
+
+return str;
+}
+0 comments on commit f18900f
