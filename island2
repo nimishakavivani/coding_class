@@ -1,0 +1,92 @@
+#include <iostream>
+#include <queue>
+#include <iomanip>
+using namespace std;
+#define M 6
+#define N 5
+struct Node
+{
+    int x;          
+    int y;  
+    int distance;   
+};
+ bool isValid(int i, int j) {
+    return (i >= 0 && i < M) && (j >= 0 && j < N);
+}
+
+bool isSafe(int i, int j, char mat[][N], int result[][N]) {
+    return mat[i][j] == 'O' && result[i][j] == -1;
+}
+
+void updateDistance(char mat[][N], int result[][N])
+{
+
+    queue<Node> Q;
+    for (int i = 0; i < M; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            if (mat[i][j] == 'M')
+            {
+                Q.push({i, j, 0});
+                result[i][j] = 0;
+            }
+
+            else {
+                result[i][j] = -1;
+            }
+        }
+    }
+
+    int R[] = { 0, -1, 0, 1 };
+    int C[] = { -1, 0, 1, 0 };
+
+
+    while (!Q.empty())
+    {
+
+        int x = Q.front().x;
+        int y = Q.front().y;
+        int distance = Q.front().distance;
+
+
+        Q.pop();
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (isValid(x + R[i], y + C[i]) &&
+                isSafe(x + R[i], y + C[i], mat, result))
+            {
+                result[x + R[i]][y + C[i]] = distance + 1;
+                Q.push({x + R[i], y + C[i], distance + 1});
+            }
+        }
+    }
+}
+
+int main()
+{
+    char mat[][N] =
+    {
+        {'O', 'M', 'O', 'O', 'X'},
+        {'O', 'X', 'X', 'O', 'M'},
+        {'O', 'O', 'O', 'O', 'O'},
+        {'O', 'X', 'X', 'X', 'O'},
+        {'O', 'O', 'M', 'O', 'O'},
+        {'O', 'X', 'X', 'M', 'O'}
+    };
+
+    int result[M][N];
+    updateDistance(mat, result);
+
+    for (int i = 0; i < M; i++)
+    {
+        for (int j = 0; j < N; j++) {
+            cout << setw(5) << result[i][j];
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
